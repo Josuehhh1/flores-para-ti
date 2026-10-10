@@ -1,80 +1,42 @@
-
-import turtle
-import math
-
-pantalla = turtle.Screen()
-pantalla.title("Unas flores para ti 💜")
-pantalla.bgcolor("#10051f")
-pantalla.setup(800, 700)
-
-lapiz = turtle.Turtle()
-lapiz.speed(0)
-lapiz.hideturtle()
-
-def escribir(x, y, mensaje, tamano, color):
-    lapiz.penup()
-    lapiz.goto(x, y)
-    lapiz.color(color)
-    lapiz.write(
-        mensaje,
-        align="center",
-        font=("Arial", tamano, "bold")
-    )
-
-def linea(x1, y1, x2, y2, color, grosor):
-    lapiz.penup()
-    lapiz.goto(x1, y1)
-    lapiz.pendown()
-    lapiz.color(color)
-    lapiz.pensize(grosor)
-    lapiz.goto(x2, y2)
-    lapiz.penup()
-
-def flor(x, y, color, petalos=8):
-    # Tallo
-    linea(x, y - 5, x, y - 180, "#45c878", 5)
-
-    # Hojas
-    for lado in [-1, 1]:
-        lapiz.penup()
-        lapiz.goto(x, y - 85)
-        lapiz.setheading(45 if lado == 1 else 135)
-        lapiz.color("#45c878")
-        lapiz.pensize(3)
-        lapiz.pendown()
-        lapiz.circle(35, 65)
-        lapiz.penup()
-
-    # Pétalos morados
-    for i in range(petalos):
-        angulo = 2 * math.pi * i / petalos
-        px = x + 23 * math.cos(angulo)
-        py = y + 23 * math.sin(angulo)
-
-        lapiz.penup()
-        lapiz.goto(px, py)
-        lapiz.dot(34, color)
-
-    # Centro de la flor
-    lapiz.goto(x, y)
-    lapiz.dot(15, "#ffe58a")
-
-# Dibujar el ramo
-flor(-145, 80, "#a855f7", 9)
-flor(-70, 155, "#d8b4fe", 10)
-flor(0, 195, "#9333ea", 9)
-flor(75, 145, "#c084fc", 10)
-flor(145, 80, "#a855f7", 9)
-flor(0, 80, "#e9d5ff", 10)
-
-# Mensaje especial
-escribir(0, 285, "💜 FELIZ DIA DE LAS FLORES MORADAS 💜",
-         17, "#e9c5ff")
-
-escribir(0, -245, "Perdon por decirtelo tarde...",
-         15, "#ffffff")
-
-escribir(0, -285, "Espero y te guste",
-         16, "#d8b4fe")
-
-pantalla.mainloop()
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flores para ti 💜</title>
+<style>
+body {
+  background: #10051f;
+  color: #e9c5ff;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 30px 10px;
+}
+.flor {
+  font-size: 65px;
+  animation: flotar 2s infinite alternate;
+  display: inline-block;
+  margin: 8px;
+}
+h1 { font-size: 24px; }
+p { color: white; font-size: 19px; }
+@keyframes flotar {
+  to { transform: translateY(-12px) rotate(8deg); }
+}
+</style>
+</head>
+<body>
+<h1>💜 FELIZ DÍA DE LAS FLORES MORADAS 💜</h1>
+<div>
+  <span class="flor">🌷</span>
+  <span class="flor">🪻</span>
+  <span class="flor">🌷</span>
+  <br>
+  <span class="flor">🪻</span>
+  <span class="flor">🌷</span>
+  <span class="flor">🪻</span>
+</div>
+<p>Perdón por decírtelo tarde...</p>
+<p>Hice estas flores pensando en ti 💜</p>
+</body>
+</html>
